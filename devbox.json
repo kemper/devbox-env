@@ -9,7 +9,7 @@
         "tmux",
         "jdk",
         "pnpm",
-        "mysql",
+        "mysql_8_0",
         "redis"
     ],
     "shell": {
