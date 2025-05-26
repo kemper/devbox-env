@@ -1,13 +1,43 @@
 {
     "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.2/.schema/devbox.schema.json",
-    "packages": [],
+    "packages": [
+        "git",
+        "git-credential-manager",
+        "rvm",
+        "uv",
+        "neovim",
+        "tmux",
+        "jdk",
+        "pnpm",
+        "mysql",
+        "redis"
+    ],
     "shell": {
       "init_hook": [
-        "echo 'Welcome to devbox!' > /dev/null"
+        "echo 'Welcome to devbox!' > /dev/null",
+        "if [ ! -d \"$HOME/.config/nvim\" ]; then\n  echo \"Cloning LazyVim starter template...\"\n  git clone https://github.com/LazyVim/starter \"$HOME/.config/nvim\"\nelse\n  echo \"LazyVim configuration already exists.\"\nfi",
+        "git config --global credential.helper git-credential-manager"
       ],
       "scripts": {
         "test": [
           "echo \"Error: no test specified\" && exit 1"
+        ],
+        "start-mysql": [
+          "echo \"To start mysql, run: devbox services start mysql\""
+        ],
+        "start-redis": [
+          "echo \"To start redis, run: devbox services start redis\""
+        ],
+        "verify-tools": [
+          "git --version",
+          "nvim --version",
+          "java -version",
+          "mysql --version",
+          "redis-cli --version",
+          "pnpm --version",
+          "uv --version",
+          "ruby --version",
+          "tmux -V"
         ]
       }
     }
